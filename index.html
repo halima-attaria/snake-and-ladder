@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    #box_container{
+        display: grid;
+        grid-template-columns: repeat(10, 10%);
+        font-size: 2.5px;
+    }
+    #box_container div{
+        outline: 1px solid #000;
+        height: 9vh;
+        font-size: 10em;
+    }
+img{
+    width: 40%;
+}
+.snake{
+    background-color: red;
+    overflow: hidden;
+    color: #fff;
+}
+.snake img{
+}
+.ladder{
+    background-color: green;
+    color: #fff;
+}
+span{
+    font-size: .50em;
+}
+</style>
+</head>
+<body>
+  <div id="box_container"></div>  
+  <script>
+    var boxDetails = {
+        5:{
+            type: "ladder",
+            "action":"12"
+        },
+        9:{
+            type: "snake",
+            "action": "2"
+        },
+        57:{
+            type: "ladder",
+            "action":"63"
+        },
+        43:{
+            type:"snake",
+            action:"25"
+        },
+        24:{
+            type: "snake",
+            action:"14"
+        },
+        27:{
+            type:"ladder",
+            "action":"35"
+        },
+        98:{
+            type:"snake",
+            "action": "6"
+        }
+    }
+  let box_container = document.getElementById("box_container");
+  for(let i=100; i>=1; i--){
+    let tmp = document.createElement('div');
+    tmp.innerHTML = i;
+    if(boxDetails.hasOwnProperty(i)){
+        let obj = boxDetails[i];
+        let img = document.createElement('img');
+        let span = document.createElement('span');
+        span.innerHTML = "Go to "+obj.action;
+        img.src = "images/"+obj.type+".jpg";
+        tmp.classList.add(obj.type);
+        tmp.append(img);
+        tmp.append(span);
+    }
+    box_container.append(tmp);
+  }
+  </script>
+</body>
+</html>
